@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="E-GOV29"
+  id="myeclipse.1306541242984"
+  context-root="/E-GOV29"
+  j2ee-spec="5.0"
+  archive="E-GOV29.war">
+  <attributes>
+    <attribute name="webrootdir" value="/WebRoot" />
+  </attributes>
+</project-module>
+

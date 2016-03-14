@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.leadfar.egov.model.ep.Enterprise">
+
+	<insert id="insert" parameterType="Enterprise">
+		<selectKey keyProperty="id" order="BEFORE" resultType="int">
+			select seq_enterprise_id.nextval from dual
+		</selectKey>
+		insert into t_enterprise
+		(id,registerNo,name,enterpriseStatus,admcode,foundDate,operateRange,operateLimited,products,capital,address,operateAddress,enterpriseType)
+		values(#{id},#{registerNo},#{name},#{enterpriseStatus.code},#{adm.code},#{foundDate,jdbcType=DATE},#{operateRange,},#{operateLimited},#{products},#{capital}
+		,#{address},#{operateAddress},#{enterpriseType.code})
+	</insert>
+
+	<resultMap type="String" id="registerNo">
+		<result column="max(registerNo)" property="registerNo" />
+	</resultMap>
+	<select id="createRegisterNo" parameterType="map" resultMap="registerNo">
+		select max(registerNo) from t_enterprise where registerNo between
+		#{min} and #{max}
+	</select>
+	
+	<resultMap type="Enterprise" id="EnterpriseRm">
+	<result column="enterpriseStatus" property="enterpriseStatus.code"/>
+	<result column="admcode" property="adm.code"/>
+	<result column="enterpriseType" property="enterpriseType.code"/>
+	<result column="foundDate" property="foundDate"/>
+	</resultMap>
+	<select id="get" parameterType="int" resultMap="EnterpriseRm">
+		select *
+		from t_enterprise where id=#{id}
+	</select>
+	
+	<update id="updateBusiness" parameterType="map" >
+	update t_business set
+		enterpriseId=#{enterpriseId} where accept_no=#{acceptNo}
+	</update>
+	
+	<update id="update" parameterType="Enterprise" >
+	update t_enterprise set
+		registerNo=#{registerNo},name=#{name},enterpriseStatus=#{enterpriseStatus.code},admcode=#{adm.code},foundDate=#{foundDate},operateRange=#{operateRange},operateLimited=#{operateLimited},products=#{products},capital=#{capital}
+		,address=#{address},operateAddress=#{operateAddress},enterpriseType=#{enterpriseType.code}
+ where id=#{id}
+	</update>
+	<resultMap type="int" id="enterpriseId">
+	<result column="enterpriseId" property="enterpriseId"/>
+	</resultMap>
+	<select id="getEnterpriseId" parameterType="String" resultMap="enterpriseId">
+		select enterpriseId
+		from t_business where accept_no=#{acceptNo}
+	</select>
+	
+	<!-- <insert id="saveStockHolders" parameterType="StockHolder">
+		<selectKey keyProperty="id" order="BEFORE" resultType="int">
+			select seq_stockholder_id.nextval from dual
+		</selectKey>
+		insert into t_stockholder
+		(id,name,cardNo,moneyInvested,percentage,enterpriseId)
+		values(#{id},#{name},#{cardNo},#{moneyInvested},#{percentage},#{enterpriseId})
+	</insert> -->
+	<insert id="saveStockHolders" parameterType="StockHolder">
+		insert into t_stockholder
+		(name,cardNo,moneyInvested,percentage,enterpriseId)
+		values(#{name},#{cardNo},#{moneyInvested},#{percentage},#{enterpriseId})
+	</insert>
+	<delete parameterType="int" id="deleteStockHolders">
+	delete from t_stockholder where enterpriseId=#{enterpriseId}
+	</delete>
+	
+	<select id="getStockHolderList" resultType="StockHolder" parameterType="int">
+	select * from t_stockholder where enterpriseId=#{enterpriseId}
+	</select>
+	
+	<insert id="saveEF" parameterType="StockHolder">
+		insert into t_file
+		(path,length,name,enterpriseId)
+		values(#{path},#{length},#{name},#{enterpriseId})
+	</insert>
+	
+	<delete parameterType="int" id="delEnterpriseFile">
+	delete from t_file where id=#{id}
+	</delete>
+	
+	<select id="getEnterpriseFileById" parameterType="int" resultType="EnterpriseFile">
+		select *
+		from t_file where id=#{id}
+	</select>
+</mapper>
+
+
+
+

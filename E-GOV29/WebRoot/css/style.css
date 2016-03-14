@@ -1,0 +1,48 @@
+body {
+	BACKGROUND-COLOR: #ffffff
+	text-align: center;
+	margin:0;
+	padding:0;
+	font-size: 12px;
+	font-family:"Verdana", "Arial", "sans-serif";
+	
+}
+A {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:link {
+	FONT-SIZE: 12px; COLOR: #000080; TEXT-DECORATION: none
+}
+A:visited {
+	FONT-SIZE: 12px; COLOR: #0000FF; TEXT-DECORATION: none
+}
+A:hover {
+	FONT-SIZE: 12px; COLOR: #be3c3b; TEXT-DECORATION: underline
+}
+A:active {
+	FONT-SIZE: 12px; COLOR: #000000; TEXT-DECORATION: underline
+}
+
+.title{
+	font-weight: bold;
+	font-size: 12px;
+	color:#000000
+	background:url(../images/title_bg.gif);
+}
+table{
+	text-align:center;
+	font-size: 12px;
+}
+
+table .header{
+	font-size: 13px;
+	font-weight: bold;
+	color: #24609F;
+	background-color:#EEF2EA;
+}
+table .data{
+	font-size: 12px;
+	color: #666666;
+	word-break: break-all;
+	background-color:#ffffff;
+}

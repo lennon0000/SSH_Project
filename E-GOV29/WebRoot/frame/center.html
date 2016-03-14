@@ -1,0 +1,44 @@
+
+<html>
+	<head>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<script type="text/javascript">
+function menuClosed() {
+	if (document.getElementById("left").width == "1") {
+		document.getElementById("left").width = "205";
+		document.getElementById("leftimg").src="menu/L_1.gif"
+	} else {
+		document.getElementById("left").width = "1";
+		document.getElementById("leftimg").src="menu/R_1.gif"
+	}
+
+}
+</script>
+	</head>
+
+	<body>
+		<table width="100%" height="100%" border="0" cellspacing="0"
+			cellpadding="0">
+			<tr>
+				<td width="205" valign="top" id="left">
+					<iframe height="100%" width="100%" frameborder="0" frameborder="0"
+						src="../frame/index?m=menu" name="leftFrame" id="leftFrame"
+						title="leftFrame" scrolling="no"></iframe>
+				</td>
+				<td width="7" bgcolor="#add2da">
+					<IMG id=leftimg
+						要注意，这里的地址，不能直接写在index去转向menu方法，这样的话再进行转向页面时，相对地址有错，就把web.xml中再添加一个对应
+						onclick=menuClosed() height=48 src="menu/L_1.gif" width=7 border=0>
+				</td>
+				<td valign="top">
+					<iframe height="100%" width="100%" frameborder="0" frameborder="0"
+						src="right.html" name="rightFrame" id="rightFrame"
+						title="rightFrame" scrolling="auto"></iframe>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
+

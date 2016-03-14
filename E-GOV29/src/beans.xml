@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans>
+	<bean id="userDao" class="org.leadfar.egov.dao.impl.UserDaoImpl"></bean>
+	<bean id="dicDao" class="org.leadfar.egov.dao.impl.DicDaoImpl"></bean>
+	<bean id="funcDao" class="org.leadfar.egov.dao.impl.FuncDaoImpl"></bean>
+	<bean id="processDao" class="org.leadfar.egov.dao.impl.ProcessDaoImpl"></bean>
+	<bean id="businessDao" class="org.leadfar.egov.dao.impl.BusinessDaoImpl"></bean>
+	<bean id="enterpriseDao" class="org.leadfar.egov.dao.impl.EnterpriseDaoImpl"></bean>
+	<bean id="userService" class="org.leadfar.egov.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="funcService" class="org.leadfar.egov.service.impl.FuncServiceImpl">
+	<property name="funcDao" ref="funcDao"></property>
+	</bean>
+	<bean id="dicService" class="org.leadfar.egov.service.impl.DicServiceImpl">
+	<property name="dicDao" ref="dicDao"></property>
+	</bean>
+	<bean id="businessService" class="org.leadfar.egov.service.impl.BusinessServiceImpl">
+	<property name="businessDao" ref="businessDao"></property>
+	<property name="processDao" ref="processDao"></property>
+	</bean>
+	<bean id="enterpriseService" class="org.leadfar.egov.service.impl.EnterpriseServiceImpl">
+	<property name="enterpriseDao" ref="enterpriseDao"></property>
+	</bean>
+</beans>
+
+

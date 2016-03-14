@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 配置管理器 -->
+<configuration>
+    <!-- 别名 -->
+    <typeAliases>
+       <typeAlias type="org.leadfar.egov.model.ep.Enterprise" alias="Enterprise"/>
+        <typeAlias type="org.leadfar.egov.model.ep.StockHolder" alias="StockHolder"/>
+    </typeAliases>
+    <!-- 配置数据库连接信息 -->
+    <environments default="development">
+       <environment id="development">
+           <transactionManager type="JDBC" />
+           <dataSource type="POOLED">
+              <property name="driver" value="oracle.jdbc.driver.OracleDriver" />
+              <property name="url" value="jdbc:oracle:thin:@localhost:1521:leadfar" />
+              <property name="username" value="egov" />
+              <property name="password" value="egov" />
+           </dataSource>
+       </environment>
+    </environments>
+    <!-- 映射文件定位 -->
+    <mappers>
+       <mapper resource="org\leadfar\egov\model\ep\SqlMap-Enterprise.xml" />
+    </mappers>
+</configuration>
