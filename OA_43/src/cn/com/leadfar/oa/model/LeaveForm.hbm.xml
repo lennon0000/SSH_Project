@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="cn.com.leadfar.oa.model.LeaveForm" table="t_leaveForm">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+
+		<property name="content"></property>
+		<property name="beginTime"></property>
+		<property name="endTime"></property>
+		<property name="days"></property>
+		<property name="state"></property>
+		<many-to-one name="leaver" class="cn.com.leadfar.oa.model.User"
+			column="leaverId" ></many-to-one>
+		<set name="userLeaveForms" inverse="true">
+			<key column="check_inforFormId"></key>
+			<one-to-many class="cn.com.leadfar.oa.model.UserLeaveForm" ></one-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

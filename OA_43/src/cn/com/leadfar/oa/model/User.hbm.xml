@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="cn.com.leadfar.oa.model.User" table="t_user">
+		<id name="id">
+			<generator class="foreign">
+			<param name="property">person</param>
+			</generator>
+		</id>
+
+		<property name="userName"></property>
+		<property name="password"></property>
+		<one-to-one name="person" class="cn.com.leadfar.oa.model.Person" constrained="true"></one-to-one>
+		<set name="roles" inverse="true" lazy="false">
+			<key column="userId"></key>
+			<one-to-many class="cn.com.leadfar.oa.model.UserRoles"></one-to-many>
+		</set>
+		<set name="userLeaveForms" inverse="true" lazy="false">
+			<key column="checkerId"></key>
+			<one-to-many class="cn.com.leadfar.oa.model.UserLeaveForm"></one-to-many>
+		</set>
+		<set name="leaveForms" inverse="true" lazy="false">
+			<key column="leaverId"></key>
+			<one-to-many class="cn.com.leadfar.oa.model.LeaveForm"></one-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="cn.com.leadfar.oa.model.Party" table="t_party">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<discriminator column="objectType" type="string"></discriminator>
+
+		<property name="name"></property>
+		<property name="description"></property>
+
+		<many-to-one name="parent" column="pid"
+			class="cn.com.leadfar.oa.model.Party"></many-to-one>
+
+		<set name="children" lazy="extra" inverse="true" order-by="pid">
+			<key column="pid"></key>
+			<one-to-many class="cn.com.leadfar.oa.model.Party" />
+		</set>
+
+		<subclass name="cn.com.leadfar.oa.model.Company"
+			discriminator-value="company">
+			<property name="phoneNumber"></property>
+			<property name="address"></property>
+			<property name="email"></property>
+			<property name="faxNumber"></property>
+			<property name="postCode"></property>
+			<property name="trade"></property>
+			<property name="website"></property>
+		</subclass>
+
+		<subclass name="cn.com.leadfar.oa.model.Dept"
+			discriminator-value="dept">
+			<property name="code"></property>
+			<property name="phoneNumber"></property>
+		</subclass>
+
+		<subclass name="cn.com.leadfar.oa.model.Person"
+			discriminator-value="person">
+			<property name="code"></property>
+			<property name="sex"></property>
+			<property name="duty"></property>
+			<property name="email"></property>
+			<property name="msn"></property>
+			<property name="phoneNumber"></property>
+			<property name="qq"></property>
+			<one-to-one name="user"></one-to-one>
+		</subclass>
+
+		<subclass name="cn.com.leadfar.oa.model.Position"
+			discriminator-value="position">
+		</subclass>
+		<filter name="personFilter" condition="objectType!=:otype">
+		</filter>
+	</class>
+	<filter-def name="personFilter">
+		<filter-param name="objectType" type="string" />
+	</filter-def>
+</hibernate-mapping>

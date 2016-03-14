@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="cn.com.leadfar.oa.model.Menu" table="t_menu">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+
+		<property name="name"></property>
+		<property name="href"></property>
+		<property name="orderNumber"></property>
+		<property name="sn"></property>
+		<many-to-one name="parent" class="cn.com.leadfar.oa.model.Menu"
+			column="pid" ></many-to-one>
+		<set name="children" order-by="id" inverse="true">
+			<key column="pid"></key>
+			<one-to-many class="cn.com.leadfar.oa.model.Menu" ></one-to-many>
+		</set>
+	</class>
+</hibernate-mapping>
